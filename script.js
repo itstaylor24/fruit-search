@@ -93,23 +93,29 @@ function searchHandler(e) {
   const results = search(input.value);
   //the results will populate based on what is in the input.value
   showSuggestions(results, input.value);
-
 }
 
 function showSuggestions(results, inputVal) {
   suggestions.innerText = "";
   // the innerText of the results will be reset whenever the showSuggestions function is run
 
+  // function titleCase(str) {
+  //   str = str.toLowerCase().split(' ');
+  //   for (let i = 0; i < str.length; i++) {
+  //       str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+  //   }
+  //   return str.join(' ');
+
   results.forEach(function (val) {
     let li = document.createElement("li");
-    const newVal = val.replace(
-      inputVal.toLowerCase(),
-      `<strong>${inputVal.toLowerCase()}</strong>`
-    );
+
+    newVal = val.replace(inputVal, `<strong>${inputVal}</strong>`);
+
     li.innerHTML = newVal;
 
     suggestions.append(li);
   });
+
   if (inputVal === "") {
     suggestions.innerText = "";
   }
