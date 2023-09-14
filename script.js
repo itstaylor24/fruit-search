@@ -99,17 +99,11 @@ function showSuggestions(results, inputVal) {
   suggestions.innerText = "";
   // the innerText of the results will be reset whenever the showSuggestions function is run
 
-  // function titleCase(str) {
-  //   str = str.toLowerCase().split(' ');
-  //   for (let i = 0; i < str.length; i++) {
-  //       str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-  //   }
-  //   return str.join(' ');
-
   results.forEach(function (val) {
     let li = document.createElement("li");
 
-    newVal = val.replace(inputVal, `<strong>${inputVal}</strong>`);
+    const regex = new RegExp(inputVal, "gi");
+    newVal = val.replace(regex, `<strong>$&</strong>`);
 
     li.innerHTML = newVal;
 
